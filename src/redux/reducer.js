@@ -4,7 +4,11 @@ const ADD_MESSAGE = 'ADD_MESSAGE';
 export function addMessage(payload = 's') {
     return {type: ADD_MESSAGE, payload}
 }
+export function asyncAddMessage(payload='async') {
+    return function (dispatch) {
 
+    }
+}
 export default function reducer(state = iniState, action) {
     switch (action.type) {
         case ADD_MESSAGE: {

@@ -7,7 +7,6 @@ export default class Provider extends Component {
     }
 
     getChildContext() {
-        console.log(this.props.store, 'provider');
         return {store: this.props.store}
     }
 
@@ -53,8 +52,6 @@ export function connect(mapStateToProps, mapDispatchToProps) {
             }
 
             render() {
-
-
                 return (<Child {...this.state}></Child>)
             }
         }
