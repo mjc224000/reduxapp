@@ -11,10 +11,24 @@ export default function createStore(reducer) {
     var getState = function () {
         return state;
     }
-    dispatch( {type:1});
+    dispatch({type: 1});
     return {dispatch, subscribe, getState}
 }
 
 
+export function applyMiddleWare(...middlewares) {
+    return createStore => (...args) => {
+        let store = createStore(...args)
+        let dispatch = function () {
+            throw new Error('nmsl')
+        }
+        const middlewareAPI = {
+            getState: store.getState,
+            dispatch: (...args) => dispatch(...args)
+        }
+        const chain = middlewares.map(middleware => middleware(middlewareAPI))
+        return {...store, dispatch}
+    }
 
 
+}

@@ -7,20 +7,33 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return {addMsg: () => dispatch(addMessage())}
+    return {addMsg: (v) => dispatch(addMessage(v))}
 }
+
 class Title extends Component {
     constructor(props) {
         super(props);
+        this.state={msg:''}
+    }
+
+    handleChange(e) {
+ this.setState({msg:e.target.value})
+    }
+
+    handleClick() {
+        let msg = this.state.msg;
+        this.props.addMsg(msg);
     }
 
     render() {
-        return  (   <div>
-            <p>{this.props.myFuckingMsg.map((v, i) => <span key={i}>{v}</span>)}</p>
-            <button onClick={this.props.addMsg}>btn</button>
+        return (<div>
+            <p>{this.props.myFuckingMsg.map((v, i) => <span key={i}>{v},</span>)}</p>
+            <input type="text" onChange={this.handleChange.bind(this)}/>
+            <button onClick={this.handleClick.bind(this)}>btn</button>
         </div>)
 
     }
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(Title);
 

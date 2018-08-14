@@ -1,8 +1,8 @@
 var iniState = {message: ['s']};
 const ADD_MESSAGE = 'ADD_MESSAGE';
 
-export function addMessage() {
-    return {type:ADD_MESSAGE,payload:'s'}
+export function addMessage(payload = 's') {
+    return {type: ADD_MESSAGE, payload}
 }
 
 export default function reducer(state = iniState, action) {
@@ -14,5 +14,6 @@ export default function reducer(state = iniState, action) {
         default :
             state = state;
     }
+    console.log('zhixing');
     return state
 }
